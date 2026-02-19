@@ -1,0 +1,142 @@
+type: collection.insomnia.rest/5.0
+schema_version: "5.1"
+name: My first collection
+meta:
+  id: wrk_83f4311e4ade43229b355460a8a548aa
+  created: 1771531213190
+  modified: 1771531213190
+  description: ""
+collection:
+  - url: http://localhost:5099/api/equipamentos
+    name: Chamar dados
+    meta:
+      id: req_ecc26a560fb54681801e63a5608b3dca
+      created: 1771531213219
+      modified: 1771533678769
+      isPrivate: false
+      description: ""
+      sortKey: -1771531213219
+    method: GET
+    headers:
+      - name: User-Agent
+        value: insomnia/12.3.1
+        description: ""
+        disabled: false
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:5099/api/equipamentos
+    name: Inserção de dados
+    meta:
+      id: req_f50f92e1749f488cbda472235ee83e7c
+      created: 1771533387163
+      modified: 1771533519748
+      isPrivate: false
+      description: ""
+      sortKey: -1771533387163
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+          "codigo": "CAT-793F-000123",
+          "tipo": "Caminhao",
+          "modelo": "Caterpillar 856F",
+          "horimetro": 18.26,
+          "statusOperacional": "Operacional",
+          "dataAquisicao": "2019-03-15",
+          "localizacaoAtual": "Mina Carajás N4E"
+        }
+    headers:
+      - name: Content-Type
+        value: application/json
+      - name: User-Agent
+        value: insomnia/12.3.1
+        description: ""
+        disabled: false
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:5099/api/equipamentos/1
+    name: Editar dados
+    meta:
+      id: req_4aaad39ea1aa4d5c9f33ccb2912e6099
+      created: 1771533563186
+      modified: 1771533666734
+      isPrivate: false
+      description: ""
+      sortKey: -1771533563186
+    method: PUT
+    body:
+      mimeType: application/json
+      text: |-
+        {
+          "codigo": "C2T-793F-000123",
+          "tipo": "Caminhao",
+          "modelo": "Caterpillar 656F",
+          "horimetro": 18.26,
+          "statusOperacional": "ForaDeServico",
+          "dataAquisicao": "2019-03-15",
+          "localizacaoAtual": "Mina Carajás N4E"
+        }
+    headers:
+      - name: Content-Type
+        value: application/json
+      - name: User-Agent
+        value: insomnia/12.3.1
+        description: ""
+        disabled: false
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:5099/api/equipamentos/2
+    name: Apagar dados
+    meta:
+      id: req_3e04c0f65a7f4251bcae95dada32ef6f
+      created: 1771533686314
+      modified: 1771534066232
+      isPrivate: false
+      description: ""
+      sortKey: -1771533686314
+    method: DELETE
+    headers:
+      - name: User-Agent
+        value: insomnia/12.3.1
+        description: ""
+        disabled: false
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+cookieJar:
+  name: Default Jar
+  meta:
+    id: jar_ac16db4cdb79b663d94e918158f20aedfc6ea726
+    created: 1771531213204
+    modified: 1771531213204
+environments:
+  name: Base Environment
+  meta:
+    id: env_ac16db4cdb79b663d94e918158f20aedfc6ea726
+    created: 1771531213198
+    modified: 1771531213198
+    isPrivate: false
