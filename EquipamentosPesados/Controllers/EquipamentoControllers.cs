@@ -46,6 +46,28 @@ namespace EquipamentosPesados.Controllers
             return Ok(equipamentos);
         }
 
+        [HttpGet("{id}/status")]
+        public async Task<IActionResult> GetStatus(int id)
+        {
+            var equipamento = await _db.Equipamentos.AsNoTracking().FirstOrDefaultAsync(e => e.Id == id);
+            if (equipamento == null) return NotFound();
+
+            return Ok(new { Status = equipamento.StatusOperacional });
+        }
+
+        [HttpGet("{tipo}/tipo")]
+        public async Task<IActionResult> GetByTipo(string tipo)
+        {
+            var equipamentos = await _db.Equipamentos
+                .AsNoTracking()
+                .Where(e => e.Tipo.ToLower() == tipo.ToLower())
+                .ToListAsync();
+
+            return Ok(equipamentos);
+        }
+
+        
+
         [HttpPost] 
         public async Task<IActionResult> Create([FromBody] CreateEquipamentoDto input)
         {
@@ -58,7 +80,7 @@ namespace EquipamentosPesados.Controllers
                 return BadRequest("O campo 'Modelo' é obrigatório.");
             if (string.IsNullOrEmpty(input.StatusOperacional))
                 return BadRequest("O campo 'StatusOperacional' é obrigatório.");
-            if (input.Horimetro < 0)
+            if (input.Horimetro <= 0)
                 return BadRequest("O campo 'Horimetro' deve ser um valor positivo.");
             if (input.DataAquisicao > DateTime.Now)
                 return BadRequest("O campo 'DataAquisicao' não pode ser uma data futura.");
@@ -66,6 +88,8 @@ namespace EquipamentosPesados.Controllers
                 return BadRequest("O campo 'LocalizacaoAtual' é obrigatório.");
             if (!Enum.TryParse<StatusOperacional>(input.StatusOperacional, true, out _))
                 return BadRequest("O campo 'StatusOperacional' deve ser um dos seguintes valores: Operacional, EmManutencao, ForaDeServico.");
+            if (!Enum.TryParse<Tipo>(input.Tipo, true, out _))
+                return BadRequest("O campo 'Tipo' deve ser um dos seguintes valores: Escavadeira, Caminhao, Carregadeira, Retroescavadeira, Trator, Guindaste.");
             if (await _db.Equipamentos.AnyAsync(e => e.Codigo == input.Codigo))
                 return BadRequest("O campo 'Codigo' deve ser único. Já existe um equipamento com esse código.");
 
@@ -100,7 +124,7 @@ namespace EquipamentosPesados.Controllers
                 return BadRequest("O campo 'Modelo' é obrigatório.");
             if (string.IsNullOrEmpty(input.StatusOperacional))
                 return BadRequest("O campo 'StatusOperacional' é obrigatório.");
-            if (input.Horimetro < 0)
+            if (input.Horimetro <= 0)
                 return BadRequest("O campo 'Horimetro' deve ser um valor positivo.");
             if (input.DataAquisicao > DateTime.Now)
                 return BadRequest("O campo 'DataAquisicao' não pode ser uma data futura.");
@@ -136,6 +160,72 @@ namespace EquipamentosPesados.Controllers
             };
 
             return Ok(dto);
+        }
+
+        [HttpPatch("{id:int}/avancar-status")]
+        public async Task<IActionResult> AvancarStatus(int id)
+        {
+            var equipamento = await _db.Equipamentos.FindAsync(id);
+            if (equipamento == null) return NotFound();
+
+            if (equipamento.StatusOperacional == "Operacional")
+                equipamento.StatusOperacional = "ForaDeServico";
+            else if (equipamento.StatusOperacional == "ForaDeServico")
+                equipamento.StatusOperacional = "EmManutencao";
+            else if (equipamento.StatusOperacional == "EmManutencao")
+                equipamento.StatusOperacional = "Operacional";
+
+            await _db.SaveChangesAsync();
+
+            var dto = new ResponseEquipamentoDto
+            {
+                Id = equipamento.Id,
+                Codigo = equipamento.Codigo,
+                Tipo = equipamento.Tipo,
+                Modelo = equipamento.Modelo,
+                Horimetro = equipamento.Horimetro,
+                StatusOperacional = equipamento.StatusOperacional,
+                DataAquisicao = equipamento.DataAquisicao,
+                LocalizacaoAtual = equipamento.LocalizacaoAtual
+            };
+
+            return Ok(dto);
+        }
+
+        [HttpPatch("{id:int}/atualizar-horimetro")]
+        public async Task<IActionResult> AtualizarHorimetro(int id, [FromBody] UpdateHorimetroInput input)
+        {
+            var equipamento = await _db.Equipamentos.FindAsync(id);
+
+            if (equipamento == null)
+                return NotFound();
+
+            if (input.Horimetro <= 0)
+                return BadRequest("O campo 'Horimetro' deve ser um valor positivo.");
+
+            equipamento.Horimetro = input.Horimetro;
+
+            await _db.SaveChangesAsync();
+
+            return Ok(equipamento);
+        }
+
+        [HttpPatch("{id:int}/atualizar-localizacao")]
+        public async Task<IActionResult> AtualizarLocalizacao(int id, [FromBody] UpdateLocalizacaoInput input)
+        {
+            var equipamento = await _db.Equipamentos.FindAsync(id);
+
+            if (equipamento == null)
+                return NotFound();
+
+            if (string.IsNullOrWhiteSpace(input.LocalizacaoAtual))
+                return BadRequest("O campo 'LocalizacaoAtual' é obrigatório.");
+
+            equipamento.LocalizacaoAtual = input.LocalizacaoAtual;
+
+            await _db.SaveChangesAsync();
+
+            return Ok(equipamento);
         }
 
         [HttpDelete("{id:int}")]

@@ -1,0 +1,289 @@
+type: collection.insomnia.rest/5.0
+schema_version: "5.1"
+name: Equipamentos Pesados
+meta:
+  id: wrk_83f4311e4ade43229b355460a8a548aa
+  created: 1771531213190
+  modified: 1771610549460
+  description: ""
+collection:
+  - name: Regras de negócio
+    meta:
+      id: fld_ca79828589654fec8a77f4674660e157
+      created: 1771610448237
+      modified: 1771610448237
+      sortKey: -1771610448237
+      description: ""
+    children:
+      - url: http://localhost:5099/api/equipamentos/4/status
+        name: Verificar Status
+        meta:
+          id: req_2b7775f4cf56485dbb5ce7325c237003
+          created: 1771607782801
+          modified: 1771612644111
+          isPrivate: false
+          description: ""
+          sortKey: -1771610453582
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.3.1
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:5099/api/equipamentos/4/avancar-status
+        name: Avançar Status
+        meta:
+          id: req_99304c32867d43769704cd96cac2d1f6
+          created: 1771608801780
+          modified: 1771612654534
+          isPrivate: false
+          description: ""
+          sortKey: -1771610453482
+        method: PATCH
+        headers:
+          - name: User-Agent
+            value: insomnia/12.3.1
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:5099/api/equipamentos/4/atualizar-horimetro
+        name: Atualizar Horimetro
+        meta:
+          id: req_493beb3cbfd647c9987a7346c92d1e99
+          created: 1771610257867
+          modified: 1771612876519
+          isPrivate: false
+          description: ""
+          sortKey: -1771610453382
+        method: PATCH
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "horimetro": 0
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.3.1
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:5099/api/equipamentos/5/atualizar-localizacao
+        name: Atualizar Localização
+        meta:
+          id: req_60bacb0388764f3ea2919f7ab025dcc0
+          created: 1771610880461
+          modified: 1771610972358
+          isPrivate: false
+          description: ""
+          sortKey: -1771610880461
+        method: PATCH
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"localizacaoAtual": "Minas Gerais"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.3.1
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:5099/api/equipamentos/caminhao/tipo
+        name: Buscar por tipo de equipamento
+        meta:
+          id: req_924d1e83480e4c1d8b1663baa2264b7a
+          created: 1771612150465
+          modified: 1771612622563
+          isPrivate: false
+          description: ""
+          sortKey: -1771612150465
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.3.1
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: CRUD
+    meta:
+      id: fld_378140dc37c74bd09451c37f3f1f0b5a
+      created: 1771610473414
+      modified: 1771610473414
+      sortKey: -1771610473414
+      description: ""
+    children:
+      - url: http://localhost:5099/api/equipamentos
+        name: Chamar dados
+        meta:
+          id: req_ecc26a560fb54681801e63a5608b3dca
+          created: 1771531213219
+          modified: 1771612858475
+          isPrivate: false
+          description: ""
+          sortKey: -1771610481120
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.3.1
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:5099/api/equipamentos
+        name: Inserção de dados
+        meta:
+          id: req_f50f92e1749f488cbda472235ee83e7c
+          created: 1771533387163
+          modified: 1771612737129
+          isPrivate: false
+          description: ""
+          sortKey: -1771610481020
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "codigo": "ETE-763F-020456",
+              "tipo": "Retroescavadeira",
+              "modelo": "Zulaine-1975",
+              "horimetro": 18.26,
+              "statusOperacional": "Operacional",
+              "dataAquisicao": "2019-03-15",
+              "localizacaoAtual": "Bahia"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.3.1
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:5099/api/equipamentos/1
+        name: Editar dados
+        meta:
+          id: req_4aaad39ea1aa4d5c9f33ccb2912e6099
+          created: 1771533563186
+          modified: 1771612814548
+          isPrivate: false
+          description: ""
+          sortKey: -1771610480920
+        method: PUT
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "codigo": "C2T-793F-000123",
+              "tipo": "Teste",
+              "modelo": "Caterpillar 656F",
+              "horimetro": 18.26,
+              "statusOperacional": "ForaDeServico",
+              "dataAquisicao": "2019-03-15",
+              "localizacaoAtual": "Mina Carajás N4E"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.3.1
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:5099/api/equipamentos/1
+        name: Apagar dados
+        meta:
+          id: req_3e04c0f65a7f4251bcae95dada32ef6f
+          created: 1771533686314
+          modified: 1771612851654
+          isPrivate: false
+          description: ""
+          sortKey: -1771610480820
+        method: DELETE
+        headers:
+          - name: User-Agent
+            value: insomnia/12.3.1
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+cookieJar:
+  name: Default Jar
+  meta:
+    id: jar_ac16db4cdb79b663d94e918158f20aedfc6ea726
+    created: 1771531213204
+    modified: 1771531213204
+environments:
+  name: Base Environment
+  meta:
+    id: env_ac16db4cdb79b663d94e918158f20aedfc6ea726
+    created: 1771531213198
+    modified: 1771531213198
+    isPrivate: false

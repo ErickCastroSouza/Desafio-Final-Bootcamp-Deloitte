@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("EquipamentosPesados")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3d697e0c3fae26619b441ffc683cb20ec85b7b90")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a0915a8963208c3fe46f7df8b0c23fd66ac3e883")]
 [assembly: System.Reflection.AssemblyProductAttribute("EquipamentosPesados")]
 [assembly: System.Reflection.AssemblyTitleAttribute("EquipamentosPesados")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

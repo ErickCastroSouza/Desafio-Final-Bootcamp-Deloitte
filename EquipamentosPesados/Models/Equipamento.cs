@@ -3,13 +3,6 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace EquipamentosPesados.Models
 {
 
-    public enum StatusOperacional
-    {
-        Operacional,
-        EmManutencao,
-        ForaDeServico
-    }
-
     [Table("equipamentos_pesados")]
     public class Equipamento
     {   

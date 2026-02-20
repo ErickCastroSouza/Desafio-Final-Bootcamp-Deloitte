@@ -159,3 +159,6 @@ C:\Users\aluno\Documents\Desafio-Final-Bootcamp-Deloitte\EquipamentosPesados\obj
 C:\Users\aluno\Documents\Desafio-Final-Bootcamp-Deloitte\EquipamentosPesados\obj\Debug\net10.0\EquipamentosPesados.pdb
 C:\Users\aluno\Documents\Desafio-Final-Bootcamp-Deloitte\EquipamentosPesados\obj\Debug\net10.0\EquipamentosPesados.genruntimeconfig.cache
 C:\Users\aluno\Documents\Desafio-Final-Bootcamp-Deloitte\EquipamentosPesados\obj\Debug\net10.0\ref\EquipamentosPesados.dll
+C:\Users\aluno\Documents\Desafio-Final-Bootcamp-Deloitte\EquipamentosPesados\bin\Debug\net10.0\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\aluno\Documents\Desafio-Final-Bootcamp-Deloitte\EquipamentosPesados\bin\Debug\net10.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\aluno\Documents\Desafio-Final-Bootcamp-Deloitte\EquipamentosPesados\bin\Debug\net10.0\Swashbuckle.AspNetCore.SwaggerUI.dll
